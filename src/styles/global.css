@@ -1,0 +1,27 @@
+* { box-sizing: border-box; }
+html { background: var(--color-bg); scroll-padding-top: 104px; }
+@media (max-width: 899px) { html { scroll-padding-top: 88px; } }
+body { margin: 0; color: var(--color-text); font: 16px/1.6 var(--font-body); -webkit-font-smoothing: antialiased; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
+a { color: inherit; text-decoration: none; }
+button, a { touch-action: manipulation; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 6px; }
+::selection { background: var(--color-accent); color: var(--color-bg); }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-family: var(--font-display); }
+img { display: block; width: 100%; height: auto; }
+button { cursor: pointer; }
+main:focus { outline: none; }
+.container { width: min(100%, 1440px); margin-inline: auto; padding-inline: var(--gutter); }
+.skip-link { position: fixed; top: 12px; left: 20px; z-index: 10; padding: 12px 20px; background: var(--color-text); color: var(--color-bg); transform: translateY(-180%); }
+.skip-link:focus { transform: translateY(0); }
+.eyebrow { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+.muted { color: var(--color-muted); }
+.text-link { display: inline-flex; align-items: center; gap: 28px; min-height: 44px; border-bottom: 1px solid var(--color-muted); font-size: 14px; }
+.text-link:hover { color: var(--color-accent); border-color: var(--color-accent); }
+.button { display: inline-flex; justify-content: space-between; align-items: center; gap: 40px; min-height: 52px; background: var(--color-action); padding: 12px 22px; color: #fff; border-radius: 3px; font-size: 14px; }
+.button:hover { background: #1b47bd; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; transform: none !important; } .skip-link:not(:focus) { top: -100px; } }
+
+.cms-preview { padding: 12px 20px; text-align: center; background: var(--color-accent); color: var(--color-bg); font-size: 14px; }

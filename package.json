@@ -1,0 +1,61 @@
+{
+  "name": "ghnworks",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "preview": "node scripts/serve-dist.mjs",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit && tsc -p studio/tsconfig.json",
+    "qa:browser": "node qa/browser-check.mjs",
+    "qa:content": "node qa/content-check.mjs",
+    "studio:dev": "node scripts/studio.mjs dev",
+    "studio:build": "node scripts/studio.mjs build",
+    "dev:cms:preview": "node scripts/preview-cms.mjs",
+    "cms:seed": "node scripts/seed-sanity.mjs",
+    "qa:cms": "node --test qa/cms-check.mjs",
+    "qa:gallery": "node qa/gallery-check.mjs",
+    "readiness": "node scripts/readiness.mjs",
+    "qa:release": "node qa/release-check.mjs",
+    "studio:deploy": "node scripts/studio.mjs deploy"
+  },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router": "^8.4.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.63.0",
+    "@sanity/client": "^8.7.0",
+    "@types/node": "^24.19.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "eslint": "^10.11.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "groq-js": "^2.0.0",
+    "node": "^24.21.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "vite": "^8.3.0",
+    "zod": "^4.6.5"
+  },
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "overrides": {
+    "@vercel/frameworks": {
+      "js-yaml": "3.15.2",
+      "smol-toml": "1.9.0"
+    },
+    "@module-federation/dts-plugin": {
+      "adm-zip": "0.6.1"
+    }
+  },
+  "workspaces": [
+    "studio"
+  ]
+}

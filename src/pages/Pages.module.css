@@ -1,0 +1,40 @@
+.page { padding-block: 64px 96px; min-height: calc(100svh - 205px); }
+.page h1 { font-size: clamp(42px, 6.3vw, 88px); line-height: 1.06; font-weight: 500; letter-spacing: -.055em; margin: 26px 0; max-width: 1050px; overflow-wrap: anywhere; }
+.page h2 { font-size: clamp(28px, 3vw, 42px); font-weight: 500; letter-spacing: -.04em; line-height: 1.15; }
+.lead { font-size: 18px; color: var(--color-muted); max-width: 60ch; }
+.notice { border-left: 2px solid var(--color-accent); padding: 12px 20px; margin: 32px 0; color: var(--color-muted); max-width: 70ch; font-size: 14px; }
+.notice strong { color: var(--color-accent); display: block; font-weight: 500; margin-bottom: 4px; }
+.filters { display: flex; gap: 10px; flex-wrap: wrap; margin: 40px 0 20px; }
+.filters button { border: 1px solid #737d8e; border-radius: 30px; padding: 9px 20px; min-height: 44px; background: transparent; color: var(--color-text); font-size: 14px; }
+.filters button[aria-pressed=true] { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-bg); }
+.filters button:hover { border-color: var(--color-accent); }
+.count { margin-bottom: 28px; color: var(--color-muted); font-size: 12px; }
+.grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 48px 32px; }
+.labGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 40px 24px; margin-top: 40px; }
+.empty { padding: 48px 0; border-block: 1px solid var(--color-border); margin-top: 32px; }
+.empty p { color: var(--color-muted); margin: 16px 0 24px; }
+.metadata { display: flex; flex-wrap: wrap; gap: 24px 64px; border-block: 1px solid var(--color-border); padding-block: 24px; margin: 32px 0; }
+.metadata dt { font-size: 11px; color: var(--color-muted); text-transform: uppercase; letter-spacing: .08em; }
+.metadata dd { margin: 6px 0 0; overflow-wrap: anywhere; }
+.editorial { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; padding-block: 48px; border-top: 1px solid var(--color-border); }
+.editorial p { color: var(--color-muted); max-width: 68ch; margin-bottom: 16px; }
+.editorial h3 { font-size: 20px; font-weight: 500; margin-bottom: 12px; }
+.editorial ul { list-style: none; padding: 0; margin: 0; }
+.editorial li { padding: 10px 0; border-bottom: 1px solid var(--color-border); }
+.next { display: flex; justify-content: space-between; align-items: center; gap: 24px; border-block: 1px solid var(--color-border); padding: 32px 0; margin-top: 48px; }
+.next span { color: var(--color-accent); }
+.next h2 { margin-top: 12px; font-size: clamp(24px,3vw,40px); }
+.next:hover h2 { color: var(--color-accent); }
+.links { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 24px; }
+.profileIntro { display: grid; grid-template-columns: 1fr 1.3fr; gap: 64px; margin: 48px 0 64px; align-items: center; }
+.profilePhoto { background: var(--color-surface); color: var(--color-muted); position: relative; display: grid; place-items: center; overflow: hidden; aspect-ratio: 1; border: 1px solid var(--color-border); }
+.profilePhoto img { width: 100%; height: 100%; object-fit: cover; }
+.photoMark { color: var(--color-accent); font-size: clamp(80px,14vw,190px); font-weight: 600; letter-spacing: -.09em; }
+.photoLabel { position: absolute; inset: auto 0 0; padding: 12px 16px; background: rgb(13 15 18 / 82%); color: var(--color-text); font-size: 13px; text-align: center; }
+.profileIntro p { margin: 20px 0; color: var(--color-muted); }
+.group { margin-bottom: 32px; }
+.email { font-size: clamp(22px,3vw,40px); letter-spacing: -.025em; overflow-wrap: anywhere; display: block; margin: 20px 0; }
+.copy { border: 1px solid #737d8e; color: var(--color-text); background: transparent; border-radius: 3px; padding: 10px 20px; min-height: 44px; }
+.status { min-height: 28px; font-size: 14px; color: var(--color-accent); margin-top: 12px; }
+@media(max-width:899px) { .grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .profileIntro { gap: 32px; } }
+@media(max-width:600px) { .page { padding-block: 40px 64px; } .grid,.labGrid,.editorial,.profileIntro { grid-template-columns: 1fr; gap: 28px; } .lead { font-size: 16px; } .editorial { padding-block: 32px; } .profilePhoto { aspect-ratio: 4/3; } .metadata { gap: 24px 32px; } }

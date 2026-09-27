@@ -1,0 +1,15 @@
+node_modules/
+/dist/
+/output/
+studio/dist/
+studio/.sanity/
+.vercel/
+coverage/
+qa/
+*.log
+
+
+.env
+.env.*
+!/.env.example
+!/.env.development
