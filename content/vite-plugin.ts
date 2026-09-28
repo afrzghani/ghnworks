@@ -8,6 +8,8 @@ import { pageMetadata, seoTags, siteOrigin, escapeHtml } from './seo.ts'
 
 const virtualId = 'virtual:portfolio'
 const resolvedId = '\0' + virtualId
+const runtimeConfigId = 'virtual:portfolio-runtime-config'
+const runtimeConfigResolvedId = '\0' + runtimeConfigId
 const marker = /<!-- seo:start -->[\s\S]*?<!-- seo:end -->/
 export function portfolioPlugin(): Plugin {
   let config: ResolvedConfig
@@ -32,8 +34,14 @@ export function portfolioPlugin(): Plugin {
       origin = siteOrigin(env.SITE_URL)
       noindex = config.command === 'serve' || env.VERCEL_ENV === 'preview' || env.SITE_NOINDEX === 'true' || !origin
     },
-    resolveId(id) { if (id === virtualId) return resolvedId },
-    load(id) { if (id === resolvedId) return `export default ${JSON.stringify(payload())}` },
+    resolveId(id) {
+      if (id === virtualId) return resolvedId
+      if (id === runtimeConfigId) return runtimeConfigResolvedId
+    },
+    load(id) {
+      if (id === resolvedId) return `export default ${JSON.stringify(payload())}`
+      if (id === runtimeConfigResolvedId) return `export default ${JSON.stringify({ source: env.CONTENT_SOURCE || 'local', projectId: env.SANITY_PROJECT_ID, dataset: env.SANITY_DATASET })}`
+    },
     transformIndexHtml(html) { return html.replace(/<title>[\s\S]*?<\/title>/, '').replace(/<meta name="description"[^>]*\/>/, '').replace('</head>', `${tags('/')}\n</head>`) },
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {

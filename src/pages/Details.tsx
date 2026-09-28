@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router'
-import { projects, experiments } from '../data/collections'
+import { usePortfolio } from '../data/PortfolioProvider'
 import { MediaGallery } from '../components/MediaGallery'
 import { NotFound } from './NotFound'
 import { DemoNotice } from './Collections'
@@ -12,6 +12,7 @@ function NextItem({ title, to, label }: { title: string; to: string; label: stri
   return <Link className={styles.next} to={to}><div><span className="eyebrow">{label}</span><h2>{title}</h2></div><span aria-hidden="true">↗</span></Link>
 }
 export function ProjectDetail() {
+  const { projects } = usePortfolio()
   const { slug } = useParams()
   const index = projects.findIndex(item => item.slug === slug)
   const project = projects[index]
@@ -28,6 +29,7 @@ export function ProjectDetail() {
   </article>
 }
 export function LabDetail() {
+  const { experiments } = usePortfolio()
   const { slug } = useParams()
   const index = experiments.findIndex(item => item.slug === slug)
   const experiment = experiments[index]

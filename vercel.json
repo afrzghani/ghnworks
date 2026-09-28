@@ -9,6 +9,10 @@
     { "source": "/projects/:path*", "destination": "/visual/:path*", "permanent": true },
     { "source": "/lab/:path*", "destination": "/code/:path*", "permanent": true }
   ],
+  "rewrites": [
+    { "source": "/visual/:slug", "destination": "/index.html" },
+    { "source": "/code/:slug", "destination": "/index.html" }
+  ],
   "headers": [
     { "source": "/(.*)", "headers": [
       { "key": "X-Content-Type-Options", "value": "nosniff" },

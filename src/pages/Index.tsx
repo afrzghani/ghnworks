@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
 import { WorkCard } from '../components/WorkCard'
-import { demoMode, experiments, projects } from '../data/collections'
-import { indexCopy, site } from '../data/content'
+import { usePortfolio } from '../data/PortfolioProvider'
 import styles from './Index.module.css'
 
 function Headline({ text }: { text: string }) {
@@ -12,6 +11,7 @@ function SectionLabel({ number, children }: { number: string; children: string }
   return <p className={`eyebrow ${styles.label}`}><span>{number}</span> / {children}</p>
 }
 export function Index() {
+  const { demoMode, experiments, projects, indexCopy, site } = usePortfolio()
   const featuredProjects = projects.filter(item => item.featured).slice(0, 5)
   const featuredCode = experiments.filter(item => item.featured).slice(0, 3)
   return <div className="container">

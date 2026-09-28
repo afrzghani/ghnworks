@@ -2,7 +2,7 @@ import type { Portfolio } from './schema.ts'
 
 export type PageMeta = { title: string; description: string; image: string; indexable: boolean }
 export function pageMetadata(data: Portfolio): Record<string, PageMeta> {
-  const page = (title: string, description: string): PageMeta => ({ title: `${title} — GHNWORKS`, description, image: '/og-default.png', indexable: true })
+  const page = (title: string, description: string): PageMeta => ({ title: `${title}`, description, image: '/og-default.png', indexable: true })
   const routes: Record<string, PageMeta> = {
     '/': page('Index', data.site.shortBio),
     '/visual': page('Visual', 'Graphic design, visual identities, posters, illustration, and UI/UX by Ghani.'),

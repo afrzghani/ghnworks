@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Navigate, Route, Routes, useLocation, useNavigationType } from 'react-router'
 import { Header, Footer } from '../components/layout/Layout'
 import { Index } from '../pages/Index'
@@ -7,7 +7,9 @@ import { Projects, Lab } from '../pages/Collections'
 import { ProjectDetail, LabDetail } from '../pages/Details'
 import { Profile } from '../pages/Profile'
 import { Contact } from '../pages/Contact'
-import { metadata, origin, noindex, cmsPreview } from '../data/content'
+import { cmsPreview, noindex, origin } from '../data/content'
+import { usePortfolio } from '../data/PortfolioProvider'
+import { pageMetadata } from '../../content/seo'
 
 function LegacyRoute({ from, to }: { from: string; to: string }) {
   const location = useLocation()
@@ -15,6 +17,8 @@ function LegacyRoute({ from, to }: { from: string; to: string }) {
 }
 
 export function App() {
+  const portfolio = usePortfolio()
+  const metadata = useMemo(() => pageMetadata(portfolio), [portfolio])
   const location = useLocation()
   const navigationType = useNavigationType()
   const previousPath = useRef(location.pathname)
@@ -58,6 +62,6 @@ export function App() {
     const savePosition = () => savedPositions.set(location.key, window.scrollY)
     window.addEventListener('scroll', savePosition, { passive: true })
     return () => { cancelAnimationFrame(frame); window.removeEventListener('scroll', savePosition) }
-  }, [location.key, location.pathname, navigationType])
+  }, [location.key, location.pathname, navigationType, metadata])
   return <>{cmsPreview && <aside className="cms-preview" role="status">Local CMS draft preview - unpublished changes. Refresh after saving in Studio.</aside>}<a className="skip-link" href="#main-content">Skip to content</a><Header key={location.pathname} /><main id="main-content" tabIndex={-1}><Routes><Route path="/" element={<Index />} /><Route path="/visual" element={<Projects />} /><Route path="/code" element={<Lab />} /><Route path="/profile" element={<Profile />} /><Route path="/contact" element={<Contact />} /><Route path="/visual/:slug" element={<ProjectDetail />} /><Route path="/code/:slug" element={<LabDetail />} /><Route path="/projects/*" element={<LegacyRoute from="/projects" to="/visual" />} /><Route path="/lab/*" element={<LegacyRoute from="/lab" to="/code" />} /><Route path="*" element={<NotFound />} /></Routes></main><Footer /></>
 }

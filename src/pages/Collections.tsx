@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from 'react-router'
-import { projects, experiments, demoMode } from '../data/collections'
+import { usePortfolio } from '../data/PortfolioProvider'
 import { WorkCard } from '../components/WorkCard'
 import styles from './Pages.module.css'
 
@@ -8,6 +8,7 @@ export function DemoNotice() {
   return <aside className={styles.notice}><strong>Demo content / Artwork pending</strong>These are layout fixtures, not completed portfolio work. Real artwork and project information have not been supplied.</aside>
 }
 export function Projects() {
+  const { projects } = usePortfolio()
   const [params, setParams] = useSearchParams()
   const categories = [...new Set(projects.map(item => item.category))]
   const selected = categories.find(category => categoryKey(category) === params.get('category'))
@@ -27,6 +28,7 @@ export function Projects() {
   </div>
 }
 export function Lab() {
+  const { experiments, demoMode } = usePortfolio()
   return <div className={`container ${styles.page}`}><p className="eyebrow muted">03 / Code</p><h1>Code Projects</h1><p className={styles.lead}>Websites, applications, and coding experiments. A space for implementation, technical exploration, and learning by building.</p>{demoMode && <aside className={styles.notice}><strong>Demo concepts / Implementation pending</strong>These cards preview future code-project layouts. Their images are static placeholders; no working software, source code, or results are claimed.</aside>}
     {experiments.length ? <div className={styles.labGrid}>{experiments.map((item, i) => <WorkCard key={item.slug} title={item.title} category={item.category} media={item.preview} to={`/code/${item.slug}`} number={`0${i + 1}`} demo={item.status === 'demo'} draft={item.status === 'draft'} summary={item.summary} compact />)}</div> : <div className={styles.empty}><h2>Room to build.</h2><p>Reviewed code projects will appear here when they are ready to share.</p><Link className="text-link" to="/visual">Explore Visual Work ↗</Link></div>}
   </div>
